@@ -20,31 +20,28 @@ const FeebbackPage = () => {
     return Math.round(positivePecent * 100);
   };
 
-  const updateGood = () => {
-    setGood(prevState => {
-      return prevState + 1;
-    });
-  };
-
-  const updateNeutral = () => {
-    setNeutral(prevstate => {
-      return prevstate + 1;
-    });
-  };
-
-  const updateBad = () => {
-    setBad(prevState => {
-      return prevState + 1;
-    });
+  const updateStatistics = btnName => {
+    switch (btnName) {
+      case 'good':
+        setGood(prevstate => prevstate + 1);
+        break;
+      case 'neutral':
+        setNeutral(prevstate => prevstate + 1);
+        break;
+      case 'bad':
+        setBad(prevstate => prevstate + 1);
+        break;
+      default:
+        console.log(btnName);
+    }
   };
 
   return (
     <Div>
       <Section title="Please leave feadback">
         <FeedbackOptions
-          good={updateGood}
-          neutral={updateNeutral}
-          bad={updateBad}
+          options={Object.keys({ good, neutral, bad })}
+          onLeaveFeedback={updateStatistics}
         />
       </Section>
       <Section title="Statistics">

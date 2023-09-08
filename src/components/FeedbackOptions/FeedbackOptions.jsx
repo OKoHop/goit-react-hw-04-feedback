@@ -1,13 +1,19 @@
 import { Button } from './FeedbackOpt.style';
 
-export const FeedbackOptions = ({ good, neutral, bad }) => {
+export const FeedbackOptions = ({ onLeaveFeedback, options }) => {
   return (
     <>
-      <Button type="button" onClick={good}>
-        Good
-      </Button>
-      <Button onClick={neutral}>Neutral</Button>
-      <Button onClick={bad}>Bad</Button>
+      {options.map(option => {
+        return (
+          <Button
+            type="button"
+            onClick={() => onLeaveFeedback(option)}
+            key={option}
+          >
+            {option}
+          </Button>
+        );
+      })}
     </>
   );
 };
